@@ -1,21 +1,22 @@
 const { WebSocketServer } = require("ws");
-const { searchBarStockData } = require("./api_handler");
 
 const PORT = 8080;
-const exampleData = {
-  hello: "world",
+const exampleJSON = {
+  hello: "Python",
 };
 
-const wss = new WebSocketServer({
-  port: PORT,
-});
+const message = "Hello python";
 
-wss.on("connection", function connection(ws) {
-  ws.on("error", console.error);
+const wss = new WebSocketServer({ port: PORT });
 
-  ws.on("message", function message(data) {
-    console.log("received: data", JSON.parse(data));
+wss.on("connection", (ws) => {
+  ws.on("error", (err) => {
+    console.error(err);
   });
 
-  ws.send(JSON.stringify(exampleData));
+  ws.on("message", () => {});
+});
+
+wss.on("listening", () => {
+  console.log(`WebSocket server is running on ws://localhost:${PORT}`);
 });

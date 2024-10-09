@@ -1,14 +1,5 @@
 import tensorflow as tf
-import keras
-from dataclasses import dataclass
-
-
-model = keras.Sequential(
-    [
-        keras.layers.LSTM(10, 1),
-        keras.layers.Dense(1)
-    ]
-)
+from tensorflow import keras
 
 
 def main() -> None:
